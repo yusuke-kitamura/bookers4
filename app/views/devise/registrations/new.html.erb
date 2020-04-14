@@ -1,10 +1,12 @@
+<body>
+<div class="sing-up">
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
   </div>
 
   <div class="field">
@@ -31,3 +33,6 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+</div>
+</body>
