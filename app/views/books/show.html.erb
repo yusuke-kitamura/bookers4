@@ -3,6 +3,9 @@
 		<div class="col-lg-3" style="background-color: white">
 			<h2>User Info</h2>
 
+			<%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg" %><br>
+
+
 			<table class="table table-hover" style="table-layout:fixed;">
 					<tr>
 						<td width="120px;">name</td>
@@ -33,18 +36,19 @@
 			<% end %>
 		</div>
 
-		<div class="col-lg-9" style="background-color: white">
+		<div class="col-lg-9">
 			<h1>Book Details</h1>
 
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<td><span><%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg', fallback: "img/no_image.jpg" %></span></td>
 						<td><%= @book.title %></td>
 						<td><%= @book.opinion %></td>
 						<!-- ユーザがログイン中の場合表示 -->
 						<% if current_user.id == @book.user_id %>
 						<td><span class="label label-success"><%= link_to "edit", edit_book_path(@book.id) %></span></td>
-						<td><span class="label label-danger"><%= link_to "destroy", books_path(@book), method: :delete, "date-confirm" => "Are you sure?" %></span></td>
+						<td><span class="label label-danger"><%= link_to "destroy", book_path(@book.id), method: :delete, "date-confirm" => "Are you sure?" %></span></td>
 						<% end %>
 					</tr>
 				</thead>
