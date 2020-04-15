@@ -1,2 +1,53 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3" style="background-color: white">
+			<h2>User Info</h2>
+
+			<table class="table table-hover" style="table-layout:fixed;">
+					<tr>
+						<td width="120px;">name</td>
+						<td><%= @user.name %></td>
+					</tr>
+					<tr>
+						<td width="120px;">introduction</td>
+						<td><%= @user.introduction %></td>
+					</tr>
+			</table>
+
+			<% if current_user == @user %>
+			<%= link_to(edit_user_path(current_user.id), class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
+			<% end %>
+
+			<h1>New Book</h1>
+
+			<%= form_for(@book) do |f| %>
+			<p>Title</p>
+			<%= f.text_field :title, class: "edit-title" %>
+
+			<p>Opinion</p>
+			<%= f.text_area :opinion, class: "edit-opinion" %>
+			<br>
+			<%= f.submit 'Create Book', class: "btn-btn-primary" %>
+			<% end %>
+		</div>
+
+		<div class="col-lg-9" style="background-color: white">
+			<h1>Book Details</h1>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td><%= @book.title %></td>
+						<td><%= @book.opinion %></td>
+						<!-- ユーザがログイン中の場合表示 -->
+						<% if current_user.id == @book.user_id %>
+						<td><span class="label label-success"><%= link_to "edit", edit_book_path(@book.id) %></span></td>
+						<td><span class="label label-danger"><%= link_to "destroy", books_path(@book), method: :delete, "date-confirm" => "Are you sure?" %></span></td>
+						<% end %>
+					</tr>
+				</thead>
+			</table>
+		</div>
+

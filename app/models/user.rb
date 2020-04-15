@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
-  attachment :profile_image #プロフィール画像設定用の実装
+  
+  attachment :profile_image
+  validates :name, presence: true
 end
