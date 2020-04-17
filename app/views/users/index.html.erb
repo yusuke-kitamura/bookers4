@@ -1,9 +1,9 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-3">
+		<div class="col-xs-3">
 			<h1>Userinfo</h1>
 
-			<%= attachment_image_tag current_user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size: '80x80' %><br>
+			<%= attachment_image_tag current_user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size: '80x80' %><br>
 
 			<table class="table table-hover">
 				<tbody>
@@ -23,21 +23,21 @@
 			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 			<% end %>
 
-			<h1>New Book</h1>
+			<h1>New book</h1>
 
 			<%= form_for(@book) do |f| %>
-			<p>Title</p>
+			<h4>Title</h4>
 			<%= f.text_field :title, class: "edit-title" %>
 
-			<p>Opinion</p>
-			<%= f.text_area :opinion, class: "edit-opinion" %>
+			<h4>Opinion</h4>
+			<%= f.text_area :body, class: "edit-body" %>
 			<br>
 			<%= f.submit 'Create Book', class: "btn btn-primary" %>
 			<% end %>
 
 		</div>
 
-		<div class="col-lg-9">
+		<div class="col-xs-9">
 			<h1>Users</h1>
 
 			<table class="table table-striped">
@@ -51,9 +51,9 @@
 			<tbody>
 				<% @users.each do |user| %>
 				<tr>
-					<td><span><%= attachment_image_tag user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size:'50x50' %></span></td>
+					<td><span><%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size:'50x50' %></span></td>
 					<td><span><%= user.name %></span></td>
-					<td><span><%= link_to "show", user_path(user) %></span></td>
+					<td><span><%= link_to "Show", user_path(user) %></span></td>
 				</tr>
 			</tbody>
 

@@ -7,6 +7,7 @@ class BooksController < ApplicationController
       flash[:notice] = "You have created book successfully."
   	redirect_to book_path(@book)
     else
+      @books = Book.all
       render action: :index
     end
   end
@@ -31,6 +32,9 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       flash[:notice] = "You have updated book successfully."
     redirect_to book_path(@book.id)
+  else
+    @books = Book.new
+    render action: :edit
     end
   end
 
@@ -42,7 +46,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-  	params.require(:book).permit(:title, :opinion, :user_id)
+  	params.require(:book).permit(:title, :body, :user_id)
   end
 
 end
