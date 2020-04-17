@@ -1,19 +1,36 @@
+<% if flash[:notice] %>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+
+<% if @book.errors.any? %>
+<div class="explanation">
+<h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+<ul>
+	<% @book.errors.full_messages.each do |message| %>
+    	<li><%= message %></li>
+    <% end %>
+</ul>
+</div>
+<% end %>
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-3" style="background-color: white">
 			<h2>User Info</h2>
 
-			<%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg" %><br>
+			<%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size: '50x50' %><br>
 
 
 			<table class="table table-hover" style="table-layout:fixed;">
 					<tr>
 						<td width="120px;">name</td>
-						<td><%= @user.name %></td>
+						<td><%= @book.user.name %></td>
 					</tr>
 					<tr>
 						<td width="120px;">introduction</td>
-						<td><%= @user.introduction %></td>
+						<td><%= @book.user.introduction %></td>
 					</tr>
 			</table>
 
@@ -42,16 +59,18 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<td><span><%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg', fallback: "img/no_image.jpg" %></span></td>
+						<td><span><%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size: '50x50' %></span></td>
 						<td><%= @book.title %></td>
 						<td><%= @book.opinion %></td>
 						<!-- ユーザがログイン中の場合表示 -->
 						<% if current_user.id == @book.user_id %>
 						<td><span class="label label-success"><%= link_to "edit", edit_book_path(@book.id) %></span></td>
-						<td><span class="label label-danger"><%= link_to "destroy", book_path(@book.id), method: :delete, "date-confirm" => "Are you sure?" %></span></td>
+						<td><span class="label label-danger"><%= link_to "destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %></span></td>
 						<% end %>
 					</tr>
 				</thead>
 			</table>
 		</div>
+	</div>
+</div>
 

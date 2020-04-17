@@ -1,0 +1,16 @@
+
+			<%= link_to(edit_user_path(current_user.id), class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
+
+			<h1>New Book</h1>
+
+			<%= form_for(book) do |f| %>
+			<p>Title</p>
+			<%= f.text_field :title, class: "edit-title" %>
+
+			<p>Opinion</p>
+			<%= f.text_area :opinion, class: "edit-opinion" %>
+			<br>
+			<%= f.submit 'Create Book', class: "btn-btn-primary" %>
+			<% end %>

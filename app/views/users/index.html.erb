@@ -1,7 +1,65 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-3" <style="background-color: white">
-			<h2>User Info</h2>
+		<div class="col-lg-3">
+			<h1>Userinfo</h1>
+
+			<%= attachment_image_tag current_user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size: '80x80' %><br>
+
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<td>name</td>
+						<td><%= current_user.name %></td>
+					</tr>
+
+					<tr>
+						<td>introduction</td>
+						<td><%= current_user.introduction %></td>
+					</tr>
+				</tbody>
+			</table>
+
+		<%= link_to(edit_user_path(current_user.id), class: "btn btn-default") do %>
+			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
+
+			<h1>New Book</h1>
+
+			<%= form_for(@book) do |f| %>
+			<p>Title</p>
+			<%= f.text_field :title, class: "edit-title" %>
+
+			<p>Opinion</p>
+			<%= f.text_area :opinion, class: "edit-opinion" %>
+			<br>
+			<%= f.submit 'Create Book', class: "btn btn-primary" %>
+			<% end %>
+
+		</div>
+
+		<div class="col-lg-9">
+			<h1>Users</h1>
+
+			<table class="table table-striped">
+			<thead>
+				<tr>
+					<th><p>image</p></th>
+					<th><p>name</p></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><span><%= attachment_image_tag user, :image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size:'50x50' %></span></td>
+					<td><span><%= user.name %></span></td>
+					<td><span><%= link_to "show", user_path(user) %></span></td>
+				</tr>
+			</tbody>
+
+			<% end %>
+		</table>
+
 		</div>
 	</div>
 </div>
