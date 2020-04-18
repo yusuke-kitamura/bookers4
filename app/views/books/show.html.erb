@@ -29,7 +29,7 @@
 
 			<h1>New book</h1>
 
-			<%= form_for(@book) do |f| %>
+			<%= form_for(@booker) do |f| %>
 			<h4>Title</h4>
 			<%= f.text_field :title, class: "edit-title" %>
 
@@ -47,7 +47,7 @@
 				<thead>
 					<tr>
 						<td><%= link_to user_path(@book.user.id) do %><%= attachment_image_tag @book.user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "img/no_image.jpg", size: '50x50' %><br><%= @book.user.name %></td>
-						<td><%= @book.title %></td>
+						<td><%= link_to @book.title, book_path(@book.id) %></td>
 						<td><%= @book.body %></td>
 						<% end %>
 						<!-- ユーザがログイン中の場合表示 -->
